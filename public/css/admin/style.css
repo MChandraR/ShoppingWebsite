@@ -1,0 +1,14 @@
+.form-area{
+    width: 50%;
+    height: 50%;
+}
+
+.input-field{
+    width: 50%;
+    border: solid blue 2px;
+}
+
+.login-btn{
+    padding-left: 10%;
+    padding-right: 10%;
+}

@@ -16,23 +16,30 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         // Validasi data input
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|unique:users|max:255',
+        //     'password' => 'required|string|min:8|confirmed',
+        // ]);\
+        
+        //Lihat apakah email telah terpakai atau belum
+        $usercount = User::where('email',$request->email)->count();
+        if ($usercount > 0){
+            echo "<script>alert('Email sudah digunakan !');</script>";
+        }else{
+            // Buat pengguna baru
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
 
-        // Buat pengguna baru
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        // Login pengguna setelah berhasil registrasi
-        Auth::login($user);
+            
+            // Login pengguna setelah berhasil registrasi
+            Auth::login($user);
+        }
 
         // Redirect ke halaman setelah login
-        return redirect()->intended('/home');
+        return redirect()->intended('/login');
     }
 }

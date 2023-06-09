@@ -44,7 +44,7 @@
         </div>
         <div id="register-form" style="display: none;">
             <h3>Register</h3>
-            <form action="{{ route('register') }}" method="post">
+            <form action="{{ route('register.submit') }}" method="post">
                 @csrf
                 <div class="imgcontainer">
                     <img src="{{ asset('images/smartandro.jpeg') }}" alt="Avatar" class="avatar">
