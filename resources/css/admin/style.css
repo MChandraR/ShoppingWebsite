@@ -1,0 +1,40 @@
+.sidebar {
+    height: 100%;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.container {
+    margin-left: 25%;
+    padding: 20px;
+}
+
+.teal {
+    background-color: #008080;
+    color: #fff;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}

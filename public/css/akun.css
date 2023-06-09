@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: black;
+}
