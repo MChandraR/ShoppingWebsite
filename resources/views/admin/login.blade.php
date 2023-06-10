@@ -30,20 +30,25 @@
     </div>
   </div>
 </nav>
-
+<div class="main-layout">
 <center>
 <div class="form-area container teal  ">
   <h1>Login Form</h1>
-  <form>
+  <form action="{{route('login.submit')}}" method="post">
+  @csrf
   <div class="col-auto">
     <label>Username</label>
-    <input type="text" id="inputPassword6" class="form-control input-field" ><br>
-    <input type="text" id="inputPassword6" class="form-control input-field"><br>
-    <button type="button" class="login-btn btn btn-primary btn-lg">Small button</button>
+    <input type="text" id="inputPassword6" name="email" class="form-control input-field" ><br>
+    <label>Password</label>
+    <input type="password" id="inputPassword6" name="password" class="form-control input-field"><br>
+    <span>Belum punya akun ?</span><a href="#"> Register</a><br>
+    <button type="submit" class="login-btn btn btn-primary btn-lg">Login</button>
   </div>
   </form>
 </div>
 </center>
+</div>
+
 
 </div>
       

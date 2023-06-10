@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -43,7 +44,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/products', [AdminController::class, 'products'])->name('admin.products');
-    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.db');
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 

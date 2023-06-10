@@ -1,7 +1,15 @@
+
+.main-layout{
+    width: 100%;
+    height: fit-content;
+    padding: 10%;
+}
+
 .form-area{
     width: 50%;
     height: 50%;
 }
+
 
 .input-field{
     width: 50%;

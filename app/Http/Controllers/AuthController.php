@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,20 +23,13 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $userData = User::where('email',$request->email)->first();
+            Auth::guard('admin')->attempt($credentials);
             // Jika autentikasi berhasil, redirect ke halaman beranda atau halaman tujuan lainnya
-            return redirect()->route('home');
-        } else {
-            // Jika autentikasi gagal, kembali ke halaman login dengan pesan error
-            return redirect()->route('login')->withErrors(['email' => 'Invalid credentials']);
-        }
-        
-        if (Auth::guard('admin')->attempt($credentials)) {
-            // Jika autentikasi berhasil, redirect ke halaman beranda admin atau halaman tujuan lainnya
-            return redirect()->route('admin.dashboard');
-        } else {
-            // Jika autentikasi gagal, kembali ke halaman login dengan pesan error
-            return redirect()->route('admin.login')->withErrors(['email' => 'Invalid credentials']);
-        }
+            return redirect()->route( $userData->role == "admin" ?'admin.db':'home') ;
+        } 
+        // Jika autentikasi gagal, kembali ke halaman login dengan pesan error
+        return back();
     }
 
     public function logout()
