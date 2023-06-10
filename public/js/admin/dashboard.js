@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const toggle = document.getElementById(toggleId),
     nav = document.getElementById(navId),
     bodypd = document.getElementById(bodyId),
-    headerpd = document.getElementById(headerId)
+    headerpd = document.getElementById(headerId),
+    bodyFrame = document.getElementById(frameArea)
     
     // Validate that all variables exist
-    if(toggle && nav && bodypd && headerpd){
+    if(toggle && nav && bodypd && headerpd && frameArea){
     toggle.addEventListener('click', ()=>{
     // show navbar
     nav.classList.toggle('show')
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     bodypd.classList.toggle('body-pd')
     // add padding to header
     headerpd.classList.toggle('body-pd')
+
+    frameArea.classList.toggle('margin-left-20');
     })
     }
     }
