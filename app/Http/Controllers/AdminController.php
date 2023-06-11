@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\pesanan;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -39,6 +40,12 @@ class AdminController extends Controller
             "deskripsi" => $req->deskripsi,
             "harga" => $req->harga
         ]);
+        $idProduct = Product::orderBy('id','desc')->first();
+        $file = $req->product_image;
+        $file_name = $file->getClientOriginalName();
+        $path = "public/img/product/";
+        
+        Storage::putFileAs($path,$file,$idProduct.".png");
 
         return back();
     }
