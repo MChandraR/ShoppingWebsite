@@ -12,9 +12,9 @@ class Product extends Model
     protected $table = 'produk';
 
     protected $fillable = [
-        'name',
-        'price',
-        'description',
+        'nama',
+        'harga',
+        'deskripsi',
     ];
 
     // Relasi dengan Cart

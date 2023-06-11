@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/products', [AdminController::class, 'products'])->name('admin.products');
+    Route::post('admin/products', [AdminController::class, 'addproduct'])->name('admin.addproduct');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.db');
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('admin/dashmain', [AdminController::class, 'mainView'])->name('admin.mainView');

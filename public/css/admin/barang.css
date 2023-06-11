@@ -1,0 +1,19 @@
+.add-barang.show{
+    transition: .1s;
+    display: contents;
+    padding : 2rem;
+    right: 50%;
+    top : 50%;
+    position: absolute;
+    background-color: blue;
+}
+
+.add-barang{
+    transition: .1s;
+    display: none;
+    padding : 2rem;
+    right: 50%;
+    top : 50%;
+    position: fixed;
+    background-color: blue;
+}

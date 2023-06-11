@@ -117,14 +117,16 @@ body{
 }
 
 .dashboard-card{
-    background-color: rgb(152, 201, 195);
+    margin-bottom: 20px;
     float : left;
     margin-right: 20px;
+    padding: 1rem;
 }
 
 .margin-left-20{
     transition: 1s;
     margin-left: 7%;
+    padding-right: 5%;
 }
 
 .cols-area{

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-   
+
     const showNavbar = (toggleId, navId, bodyId, headerId) =>{
     const toggle = document.getElementById(toggleId),
     nav = document.getElementById(navId),
@@ -9,20 +9,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     // Validate that all variables exist
     if(toggle && nav && bodypd && headerpd && frameArea){
-    toggle.addEventListener('click', ()=>{
-    // show navbar
-    nav.classList.toggle('show')
-    // change icon
-    toggle.classList.toggle('bx-x')
-    // add padding to body
-    bodypd.classList.toggle('body-pd')
-    // add padding to header
-    headerpd.classList.toggle('body-pd')
+        toggle.addEventListener('click', ()=>{
+        // show navbar
+        nav.classList.toggle('show')
+        // change icon
+        toggle.classList.toggle('bx-x')
+        // add padding to body
+        bodypd.classList.toggle('body-pd')
+        // add padding to header
+        headerpd.classList.toggle('body-pd')
 
-    frameArea.classList.toggle('margin-left-20');
-    })
+        frameArea.classList.toggle('margin-left-20');
+        })
     }
-    }
+
+     console.log(screen.width);
+}
     
     showNavbar('header-toggle','nav-bar','body-pd','header')
     
@@ -39,3 +41,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
      // Your code to run since DOM is loaded and ready
     });
+
+    
