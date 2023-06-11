@@ -17,10 +17,10 @@
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="#" class="nav_logo"><img src="{{asset('images/dashboard.png')}}" width="20px" height="20px"></li> <span class="nav_logo-name">Menu Admin</span> </a>
+            <div> <a href="#" class="nav_logo"><img src="{{asset('images/icon/dashboard.png')}}" width="20px" height="20px"></li> <span class="nav_logo-name">Menu Admin</span> </a>
                 <div class="nav_list"> 
                     <a href="#" class="nav_link active" id="dashboard-btn"> 
-                        <img src="{{asset('images/dashboard.png')}}" width="20px" height="20px">
+                        <img src="{{asset('images/icon/dashboard.png')}}" width="20px" height="20px">
                         <span class="nav_name">Dashboard</span> </a>
                     <a href="#" class="nav_link" id="barang-btn"> 
                         <img src="{{asset('images/icon/product_icon_black.png')}}" width="20px" height="20px">
