@@ -23,22 +23,19 @@
                         <img src="{{asset('images/dashboard.png')}}" width="20px" height="20px">
                         <span class="nav_name">Dashboard</span> </a>
                     <a href="#" class="nav_link" id="barang-btn"> 
-                        <img src="{{asset('images/profile.png')}}" width="20px" height="20px">
+                        <img src="{{asset('images/icon/product_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Barang</span> </a> 
-                    <a href="#" class="nav_link"> 
-                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                    <a href="#" class="nav_link"  id="pembelian-btn"> 
+                        <img src="{{asset('images/icon/troller_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Pembelian</span> </a> 
                     <a href="#" class="nav_link"> 
-                        <i class='bx bx-bookmark nav_icon'></i> 
-                        <span class="nav_name">Pembayaran</span> </a> 
+                        <img src="{{asset('images/icon/send_icon_black.png')}}" width="20px" height="20px">
+                        <span class="nav_name">Kirim Pesanan</span> </a> 
                     <a href="#" class="nav_link"> 
-                        <i class='bx bx-folder nav_icon'></i> 
-                        <span class="nav_name">Files</span> </a> 
-                    <a href="#" class="nav_link"> 
-                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
-                        <span class="nav_name">Stats</span> </a> 
+                        <img src="{{asset('images/icon/history_icon_black.png')}}" width="20px" height="20px">
+                        <span class="nav_name">Riwayat Pesanan</span> </a> 
                 </div>
-            </div> <a href="#" class="nav_link"> 
+            </div> <a href="{{route('logout')}}" class="nav_link"> 
             <img src="{{asset('images/exit.png')}}" width="20px" height="20px">
             <span class="nav_name">SignOut</span> </a>
         </nav>
@@ -61,6 +58,7 @@
     console.log("Hallo" +  "{{route('admin.db')}}");
     let canvas = document.getElementById("frame_area");
     let barang_route = "{{route('admin.products')}}";
+    let pembelian_route = "{{route('admin.transaksi')}}";
 
     let loadForm = (url)=>{
         fetch( url)
@@ -79,6 +77,7 @@
 
     let btn_barang = document.getElementById("barang-btn");
     let btn_dashboard = document.getElementById("dashboard-btn");
+    let btn_pembelian = document.getElementById("pembelian-btn");
 
     btn_barang.addEventListener('click',()=>{
         loadForm(barang_route);
@@ -86,6 +85,10 @@
 
     btn_dashboard.addEventListener('click',()=>{
         loadForm("{{route('admin.mainView')}}");
+    });
+
+    btn_pembelian.addEventListener('click',()=>{
+        loadForm(pembelian_route);
     });
 
 

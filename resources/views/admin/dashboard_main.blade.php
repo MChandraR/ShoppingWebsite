@@ -25,7 +25,7 @@
     <p class="card-text">Jumlah pembelian : <?=$resData['jumlahPesanan']?></p>
   </div>
 </div>
-<div class="dashboard-card bg-success" style="width: 22rem; height:10rem;">
+<div class="dashboard-card bg-warning" style="width: 22rem; height:10rem;">
   <img src="{{asset('images/icon/avatar_icon.png')}}" style="float:left;margin-right:2rem;" width="120rem">
   <div class="card-body" style="float:left;" >
     <h5 class="card-title">Data Akun</h5>

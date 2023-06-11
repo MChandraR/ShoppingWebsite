@@ -59,4 +59,9 @@ class AdminController extends Controller
             "message" => "success"
         ]);
     }
+
+    public function pembelian(){
+        $transactionData = pesanan::all();
+        return view('admin.transaksi',compact('transactionData'));
+    }
 }

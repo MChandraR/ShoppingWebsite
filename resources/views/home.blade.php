@@ -47,31 +47,10 @@
       <h2>Smartphone Tersedia</h2>
       @foreach($products as $product)
       <div class="product">
-        <img src="{{ asset('images/iphone12.png') }}" alt="iPhone 12">
-        <h3>{{ $product->name }}</h3>
-        <p>{{ $product->description }}</p>
-        <span class="price">{{ $product->price }}</span>
-        <a href="#" class="btn" data-product-id="{{ $product->id }}">Tambahkan ke keranjang</a>
-    </div>    
-      <div class="product">
-        <img src="{{ asset('images/iphone12.png') }}" alt="iPhone 12">
-        <h3>iPhone 12</h3>
-        <p>6.1" Super Retina XDR Display, A14 Bionic Chip</p>
-        <span class="price">Rp.17.789.000</span>
-        <a href="#" class="btn" data-product-id="{{ $product->id }}">Tambahkan ke keranjang</a>
-      </div>
-      <div class="product">
-        <img src="{{ asset('images/samsungS21.png') }}" alt="Samsung Galaxy S21">
-        <h3>Samsung Galaxy S21</h3>
-        <p>6.2" Dynamic AMOLED 2X Display, Exynos 2100 Chip</p>
-        <span class="price">Rp.15.699.000</span>
-        <a href="#" class="btn" data-product-id="{{ $product->id }}">Tambahkan ke keranjang</a>
-      </div>
-      <div class="product">
-        <img src="{{ asset('images/googlepixel12.png') }}" alt="Google Pixel 5">
-        <h3>Google Pixel 5</h3>
-        <p>6.0" OLED Display, Snapdragon 765G Chip</p>
-        <span class="price">Rp.13.099.000</span>
+        <img src="{{ asset('images/product/')}}<?="/".$product['id']?>.png" alt="Google Pixel 5">
+        <h3>{{$product['nama']}}</h3>
+        <p>{{$product['deskripsi']}}</p>
+        <span class="price">Rp.{{$product['harga']}}</span>
         <a href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
       </div>
       @endforeach
