@@ -43,10 +43,12 @@ class AdminController extends Controller
         $idProduct = Product::orderBy('id','desc')->first();
         $file = $req->product_image;
         $file_name = $file->getClientOriginalName();
-        $path = "public/img/product/";
+        $path = "public/img/product";
         
-        Storage::putFileAs($path,$file,$idProduct.".png");
+        Storage::putFileAs($path,$file,$idProduct->id.".png");
 
-        return back();
+        return response()->json([
+                "name" => $idProduct->id
+        ]);
     }
 }
