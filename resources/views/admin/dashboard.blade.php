@@ -60,6 +60,7 @@
 <script>
     console.log("Hallo" +  "{{route('admin.db')}}");
     let canvas = document.getElementById("frame_area");
+    let barang_route = "{{route('admin.products')}}";
 
     let loadForm = (url)=>{
         fetch( url)
@@ -80,11 +81,12 @@
     let btn_dashboard = document.getElementById("dashboard-btn");
 
     btn_barang.addEventListener('click',()=>{
-        loadForm("{{route('admin.products')}}");
+        loadForm(barang_route);
     });
 
     btn_dashboard.addEventListener('click',()=>{
         loadForm("{{route('admin.mainView')}}");
     });
+
 
 </script>

@@ -34,7 +34,7 @@ class AdminController extends Controller
         return view('admin.barang',compact('productData'));
     }
 
-    public function addproduct(Request $req){
+    public function addProduct(Request $req){
         Product::create([
             'nama' => $req->nama,
             "deskripsi" => $req->deskripsi,
@@ -43,12 +43,20 @@ class AdminController extends Controller
         $idProduct = Product::orderBy('id','desc')->first();
         $file = $req->product_image;
         $file_name = $file->getClientOriginalName();
-        $path = "public/img/product";
+        $path = "images/product";
         
-        Storage::putFileAs($path,$file,$idProduct->id.".png");
+        // Storage::putFileAs($path,$file,$idProduct->id.".png");
+        $file->move($path,$idProduct->id.".png");
+
+        return back();
+    }
+
+    public function deleteProduct(Request $req){
+        $productTemp = Product::where('id',$req->id);
+        $productTemp->delete();
 
         return response()->json([
-                "name" => $idProduct->id
+            "message" => "success"
         ]);
     }
 }

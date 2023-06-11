@@ -1,7 +1,14 @@
 var add_btn = document.getElementById("add-barang");
 var add_area = document.getElementById("add-area");
+var deleteRoute = "";
 console.log("Hallo");
-add_btn.addEventListener('click',()=>{
-    add_area.classList.toggle("show");
-    console.log("muncul");
-});
+var route = "";
+
+var setDeleteRoute = (route)=>{
+    deleteRoute = route;
+    console.log(route);
+};
+
+var deleteProduct = (ids)=>{
+};
+

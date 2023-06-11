@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="{{ asset('css/admin/barang.css') }}">
     <title>Document</title>
 </head>
-<body >
+<body>
+
 <div class="main">
     <h2>Admin Barang </h2> <br><br>
 
@@ -30,7 +31,15 @@
             <td>{{$datas['nama']}}</td>
             <td>{{$datas['deskripsi']}}</td>
             <td>{{$datas['harga']}}</td>
-            <td><button class="btn bg-primary">Update</button></td>
+            <td style="width:15rem;">
+                <form action="{{route('admin.deleteproduct')}}" method="post">
+                    @csrf
+                    <input type="text" name="id" value="{{$datas['id']}}" hidden></input>
+                    <a onclick="deleteProduct({{$datas['id']}})" class="btn bg-danger">Delete</a>
+                    <a onclick="deleteProduct({{$datas['id']}})" class="btn bg-success">Update</a>
+                </form>
+                
+            </td>
        </tr>
        @endforeach
        @endif
@@ -52,24 +61,24 @@
         @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Produk</label>
-                <input type="text" name="nama" class="form-control" required>
+                <input type="text" name="nama" id="nama_inp" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Deskripsi Produk</label>
-                <input type="text" name="deskripsi" class="form-control" required>
+                <input type="text" name="deskripsi" id="desc_inp" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Harga Produk</label>
-                <input type="number" name="harga" class="form-control" required>
+                <input type="number" name="harga" id="harga_inp" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Foto Produk</label>
-                <input type="file" name="product_image" class="form-control" required>
+                <input type="file" name="product_image" id="img_inp" class="form-control" required>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>     
+                <button id="submit-button" class="btn btn-primary">Submit</button>     
             </div>
         </form>
       </div>
@@ -80,3 +89,30 @@
 <script src="{{asset('js/admin/barang.js')}}"></script>
 </body>
 </html>
+<script>
+var route = "{{route('admin.deleteproduct')}}";
+var add_route = "{{route('admin.addproduct')}}";
+var deleteProduct = (ids)=>{
+
+    $.ajaxSetup({
+        headers : {
+            'X-CSRF-TOKEN' : $('input[name="_token"]').attr('value')
+        }
+    });
+    console.log(route);
+    $.ajax({
+        url:route,
+        method :'POST',
+        data : {
+            id : ids
+        }
+        
+    }).done(function( result ) {
+        alert( "Data berhasil dihapus : " + result.message );
+        if(barang_route != null || barang_route != ""){
+            loadForm(barang_route);
+        }
+    });
+};
+
+</script>
