@@ -17,7 +17,7 @@
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="#" class="nav_logo"><img src="{{asset('images/icon/dashboard.png')}}" width="20px" height="20px"></li> <span class="nav_logo-name">Menu Admin</span> </a>
+            <div> <a href="#" class="nav_logo"><img src="{{asset('images/icon/admin_menu_icon.png')}}" width="20px" height="20px"></li> <span class="nav_logo-name">Menu Admin</span> </a>
                 <div class="nav_list"> 
                     <a href="#" class="nav_link active" id="dashboard-btn"> 
                         <img src="{{asset('images/icon/dashboard.png')}}" width="20px" height="20px">

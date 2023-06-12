@@ -52,8 +52,8 @@
 <div class="modal fade" style="width:100%;" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="true" aria-labelledby="staticBackdropLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambahkan Barang</h1>
+      <div class="modal-header" style=" background-color: blue; color:white; font-weight:bold;">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"><b>Tambahkan Barang</b></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -91,7 +91,7 @@
 <div class="modal fade"  style="width:100%;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style=" background-color: blue; color:white; font-weight:bold;">
         <h1 class="modal-title fs-5" id="exampleModalLabel"><b>Update Barang</b></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -149,7 +149,7 @@ var update_desc = document.getElementById("update-desc");
 var update_harga = document.getElementById("update-harga");
 
 var setIdProduct = (id)=>{
-    image_area.src = "{{asset('images/product')}}"+"/" + id + ".png";
+    image_area.src = "{{asset('images/product')}}"+"/" + id + ".png?t=" + new Date().getTime();
     id_product = id;
     update_id.value = id;
     console.log("Current id : " + id);
