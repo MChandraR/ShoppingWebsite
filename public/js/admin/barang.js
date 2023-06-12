@@ -12,3 +12,7 @@ var setDeleteRoute = (route)=>{
 var deleteProduct = (ids)=>{
 };
 
+
+var setProductId = (id)=>{
+};
+

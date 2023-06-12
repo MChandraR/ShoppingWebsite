@@ -45,7 +45,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/products', [AdminController::class, 'products'])->name('admin.products');
     Route::post('admin/products', [AdminController::class, 'addProduct'])->name('admin.addproduct');
+    Route::post('admin/products-detail', [AdminController::class, 'getProductData'])->name('admin.getproductdata');
     Route::post('admin/products-d', [AdminController::class, 'deleteProduct'])->name('admin.deleteproduct');
+    Route::post('admin/products-u', [AdminController::class, 'updateProduct'])->name('admin.updateproduct');
     Route::get('admin/transaksi', [AdminController::class, 'pembelian'])->name('admin.transaksi');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.db');
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');

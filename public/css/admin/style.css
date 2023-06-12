@@ -2,14 +2,19 @@
 .main-layout{
     width: 100%;
     height: fit-content;
-    padding: 10%;
+    padding: 5%;
 }
 
 .form-area{
-    width: 50%;
+    width: 40%;
     height: 50%;
 }
 
+.login-card{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: rgba(0, 0, 0, 0.326);
+}
 
 .input-field{
     width: 50%;

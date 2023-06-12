@@ -35,20 +35,29 @@ class AdminController extends Controller
     }
 
     public function addProduct(Request $req){
-        Product::create([
+        $insert = Product::create([
             'nama' => $req->nama,
             "deskripsi" => $req->deskripsi,
             "harga" => $req->harga
         ]);
-        $idProduct = Product::orderBy('id','desc')->first();
-        $file = $req->product_image;
-        $file_name = $file->getClientOriginalName();
-        $path = "images/product";
-        
-        // Storage::putFileAs($path,$file,$idProduct->id.".png");
-        $file->move($path,$idProduct->id.".png");
 
-        return back();
+        if(isset($req->product_image)){
+            if($req->product_image != null){
+                $idProduct = Product::orderBy('id','desc')->first();
+                $file = $req->product_image;
+                $file_name = $file->getClientOriginalName();
+                $path = "images/product";
+                if(isset($req->id)){
+                    $idProduct = $req->id;
+                }
+                // Storage::putFileAs($path,$file,$idProduct->id.".png");
+                $file->move($path,$idProduct->id.".png");
+            }
+        }
+
+        return response()->json([
+            "message" => $insert ? "success" : "gagal"
+        ]);
     }
 
     public function deleteProduct(Request $req){
@@ -63,5 +72,45 @@ class AdminController extends Controller
     public function pembelian(){
         $transactionData = pesanan::all();
         return view('admin.transaksi',compact('transactionData'));
+    }
+
+    public function getProductData(Request $req){
+        $productData = Product::where('id',$req->id)->get();
+        return response()->json([
+            "message" => $productData ? "success" : "gagal",
+            "data" => $productData
+        ]);
+    }
+
+    public function updateProduct(Request $req){
+        $productTemp = Product::where('id',$req->id)->update([
+            "nama" => $req->nama,
+            "deskripsi" => $req->deskripsi,
+            "harga" => $req->harga
+        ]);
+        $path_temp = "";
+
+        if(isset($req->product_image)){
+            if($req->product_image != null){
+                $idProduct ="";
+                $file = $req->product_image;
+                $file_name = $file->getClientOriginalName();
+                $path = "images/product";
+                if(isset($req->id)){
+                    $idProduct = $req->id;
+                }
+                $old_file =  $path."/".$idProduct.".png";
+                if(file_exists($old_file)){
+                    unlink($path."/".$idProduct.".png");
+                };
+                $path_temp = $path."/".$idProduct.".png";
+                $file->move($path,$idProduct.".png");
+            }
+        }
+
+        return response()->json([
+            "message" => $productTemp ? "success" : "gagal",
+            "res" => $path_temp
+        ]);
     }
 }

@@ -13,27 +13,10 @@
 </style>
 
 <body>
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a href="#" class="nav-link button">Link 1</a>
-  <a href="#" class="nav-link button">Link 2</a>
-  <a href="#" class="nav-link button">Link 3</a>
-      </div>
-    </div>
-  </div>
-</nav>
 <div class="main-layout">
 <center>
-<div class="form-area container teal  ">
-  <h1>Login Form</h1>
+<div class="form-area container teal login-card" >
+  <h1 style="color:white;">Login Form</h1><br>
   <form action="{{route('login.submit')}}" method="post">
   @csrf
   <div class="col-auto">
