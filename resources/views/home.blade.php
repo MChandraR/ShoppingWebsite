@@ -64,7 +64,7 @@
   </footer>
 
   <script>
-    // Mendapatkan semua tombol "Tambahkan ke keranjang"
+    // Mendapatkan semua tombol "Tambahkan ke keranjang" ...
     const addToCartButtons = document.querySelectorAll('.btn[data-product-id]');
 
     addToCartButtons.forEach(button => {
