@@ -116,6 +116,18 @@ body{
     margin-top: 7%;
 }
 
+.main-logo{
+    transition: .5s;
+    width: 22px;
+    height: 22px;
+}
+
+.main-logo.show{
+    transition: .5s;
+    width: 40px;
+    height: 40px;
+}
+
 .dashboard-card{
     margin-bottom: 20px;
     float : left;

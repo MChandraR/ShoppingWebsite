@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     nav = document.getElementById(navId),
     bodypd = document.getElementById(bodyId),
     headerpd = document.getElementById(headerId),
-    bodyFrame = document.getElementById(frameArea)
+    bodyFrame = document.getElementById(frameArea),
+    main_logo = document.getElementById("main-logo");
     
     // Validate that all variables exist
     if(toggle && nav && bodypd && headerpd && frameArea){
@@ -18,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         bodypd.classList.toggle('body-pd')
         // add padding to header
         headerpd.classList.toggle('body-pd')
+
+        main_logo.classList.toggle('show');
 
         frameArea.classList.toggle('margin-left-20');
         })
@@ -41,5 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
      // Your code to run since DOM is loaded and ready
     });
+
+
+    
 
     
