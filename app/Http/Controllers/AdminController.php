@@ -74,6 +74,11 @@ class AdminController extends Controller
         $productTemp = Product::where('id',$req->id);
         $productTemp->delete();
 
+        $path = "images/product/".$req->id.".png";
+        if(file_exists($path)){
+            unlink($path);
+        }
+
         //mengembalikan respon dalam bentuk json 
         return response()->json([
             "message" => "success"

@@ -22,19 +22,19 @@
         <nav class="nav">
             <div> <a href="#" class="nav_logo "><img class="main-logo"  id="main-logo" src="{{asset('images/icon/admin_menu_icon.png')}}"></li> <span class="nav_logo-name">Menu Admin</span> </a>
                 <div class="nav_list"> 
-                    <a href="#" class="nav_link active" id="dashboard-btn"> 
+                    <a href="#" class="nav_link active mynav" id="dashboard-btn"> 
                         <img src="{{asset('images/icon/dashboard.png')}}" width="20px" height="20px">
                         <span class="nav_name">Dashboard</span> </a>
-                    <a href="#" class="nav_link" id="barang-btn"> 
+                    <a href="#" class="nav_link mynav" id="barang-btn"> 
                         <img src="{{asset('images/icon/product_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Barang</span> </a> 
-                    <a href="#" class="nav_link"  id="pembelian-btn"> 
+                    <a href="#" class="nav_link mynav"  id="pembelian-btn"> 
                         <img src="{{asset('images/icon/troller_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Pembelian</span> </a> 
-                    <a href="#" class="nav_link"> 
+                    <a href="#" class="nav_link mynav"> 
                         <img src="{{asset('images/icon/send_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Kirim Pesanan</span> </a> 
-                    <a href="#" class="nav_link"> 
+                    <a href="#" class="nav_link mynav"> 
                         <img src="{{asset('images/icon/history_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Riwayat Pesanan</span> </a> 
                 </div>
@@ -44,7 +44,7 @@
         </nav>
     </div>
     <!--Container Main start-->
-    <div class="height-100 bodyId margin-left-20" id="frameArea" >
+    <div class="height-100 bodyId margin-left-20" style="transition:1.2s;"id="frameArea" >
         <div class="frame" id="frame_area"></div>
         
     </div>

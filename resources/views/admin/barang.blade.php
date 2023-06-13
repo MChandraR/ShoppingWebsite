@@ -8,9 +8,8 @@
 </head>
 <body>
 
-<div class="main">
+<div class="main" >
     <h2>Admin Barang </h2> <br><br>
-
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">+ Add barang</button>
     <br><br>
     <table class="table table-striped" style="width:95%;">

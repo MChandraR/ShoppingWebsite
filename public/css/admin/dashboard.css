@@ -146,6 +146,12 @@ body{
 
 }
 
+.mynav{
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+
 .margin-left-20{
     transition: 1s;
     margin-left: 7%;
