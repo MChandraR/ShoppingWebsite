@@ -24,20 +24,22 @@
     <tbody>
        @if(isset($transactionData))
        @foreach($transactionData as $datas)
-       <tr style=" vertical-align: middle;">
+       <tr style=" vertical-align: middle; ">
             <td style="text-align:center;">{{$datas['id']}}</td>
             <td><b>[{{$datas['user_id']}}]</b> {{$datas['name']}}</td>
             <td><b>[{{$datas['produk_id'] }}]</b> {{$datas['nama']}}</td>
             <td style="text-align:center;">{{$datas['jumlah']}}</td>
             <td>{{$datas['status']}}</td>
-            <td style="width:15rem;">
-                <form action="{{route('admin.deleteproduct')}}" method="post">
+            <td style="width:8rem; height:2rem;">
+                <form action="{{route('admin.prosestransaksi')}}" method="post">
                     @csrf
-                    <input type="text" name="id" value="{{$datas['id']}}" hidden></input>
+                    <input name="pesananID" value="{{$datas['id']}}" hidden></input>
                     @if($datas['status']=="pending" || $datas['status']=="Pending")
-                    <button class="btn bg-primary" type="submit">Accept</button>
+                    <button pesananID="{{$datas['id']}}" act="Accept" class="btn bg-primary" id="prosesPesanan" type="submit">Accept</button>
+                    @elseif($datas['status']=="accepted" || $datas['status']=="Accepted")
+                    <button pesananID="{{$datas['id']}}" act="Cancel" class="btn bg-danger" id="prosesPesanan" type="submit">Cancel</button>
                     @else
-                    <button class="btn bg-danger" type="submit">Cancel</button>
+                    <a class="btn bg-danger-subtle" >No Action</button>
                     @endif
                 </form>
                 
@@ -51,3 +53,42 @@
 </div>
 </body>
 </html>
+
+<script>
+    var prosesBtn = document.getElementById("prosesPesanan");
+    var pesananID = "";
+    var action = "";
+    var prosesRoute = "{{route('admin.prosestransaksi')}}";
+
+    //membuat method untuk memproses pesanan oleh admin 
+    if(prosesBtn!=null){
+        prosesBtn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            pesananID = prosesBtn.getAttribute("pesananID");
+            action = prosesBtn.getAttribute("act");
+            console.log("Memproses id Pesanan : " + pesananID);
+
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN' : $('input[name="_token"]').attr('value')
+                }
+            });
+            $.ajax({
+                url:prosesRoute,
+                method :'POST',
+                data : {
+                    pesananID : pesananID,
+                    action : action
+                }
+                
+            }).done(function( result ) {
+                if(pembelian_route != null || loadForm != null){
+                    console.log("sucess");
+                    loadForm(pembelian_route);
+                }
+            });
+        });
+    }
+
+
+</script>

@@ -17,7 +17,7 @@ class PesananController extends Controller
         //mendapatkan data total pesanan yang masih pending
         $totalPending = $transactionData->where('status',"Pending");
         //mendapatkan data total pesanan yang sudah di acc
-        $totalAcc = $transactionData->where('status',"Accept");
+        $totalAcc = $transactionData->where('status',"Accepted");
         
         return view('admin.transaksi',compact('transactionData',"totalPending","totalAcc"));
         // return response()->json([
@@ -26,13 +26,27 @@ class PesananController extends Controller
     }
 
     public function process(Request $req){
-        RiwayatPesanan::create([
-            "user_id" => $req->user_id,
-            "tanggal_pemesanan" => $req->tgl_pesanan,
-            "pesanan" => $req->product_id
-        ]);
+        $pesananData = pesanan::where('id',$req->pesananID);
+        if($req->action!="Accept") {
+            $data = $pesananData->first();
+            $pesananData->update([
+                "status" => "Canceled"
+            ]);
+        }else{
+            $data = $pesananData->first();
+            $pesananData->update([
+                "status" => ($data->status == "Pending" ? "Accepted" : "Pending" )
+            ]);
 
+            RiwayatPesanan::create([
+                "user_id" => $data->user_id,
+                "tanggal_pesanan" => date('Y-m-d H:m:s'),
+                "pesanan" => $data->produk_id
+            ]);
+
+        }
         
-        return null;
+        
+        return back();
     }
 }

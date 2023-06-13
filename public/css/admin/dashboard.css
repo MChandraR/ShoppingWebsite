@@ -129,10 +129,21 @@ body{
 }
 
 .dashboard-card{
+    transition: .5s;
     margin-bottom: 20px;
     float : left;
     margin-right: 20px;
     padding: 1rem;
+    width: 22rem; height:10rem;
+}
+.dashboard-card:hover{
+    align-items: center;
+    transition: .5s;
+    margin-bottom: 20px;
+    float : left;
+    margin-right: 20px;
+    padding: 1.2rem;
+
 }
 
 .margin-left-20{

@@ -15,7 +15,7 @@
         <div class="header_toggle">
             <img id="header-toggle" src="{{asset('images/list-black.png')}}" width="20px" height="20px"> 
         </div>
-        <marquee direction="right"><b>Selamat Datang di Menu Admin</b></marquee>
+        <marquee direction="right" style="margin-left:1rem; font-size:20px;"><b>Selamat Datang di Menu Admin</b></marquee>
         <div class="header_img"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">

@@ -6,7 +6,7 @@
     top : 50%;
     position: absolute;
     background-color: blue;
-   
+    
 }
 
 .add-barang{
@@ -17,4 +17,13 @@
     top : 50%;
     position: fixed;
     background-color: blue;
+}
+
+.tb-row{
+    transition : 0.2s;
+}
+
+.tb-row:hover{
+    transition : 0.2s;
+    background-color: aqua;
 }
