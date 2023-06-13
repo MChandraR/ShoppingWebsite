@@ -134,7 +134,7 @@ body{
     float : left;
     margin-right: 20px;
     padding: 1rem;
-    width: 22rem; height:10rem;
+    width: 23rem; height:10rem;
 }
 .dashboard-card:hover{
     align-items: center;

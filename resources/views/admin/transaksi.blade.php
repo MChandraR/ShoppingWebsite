@@ -8,8 +8,10 @@
 <body>
 <div class="main">
     <h2>Admin Pembelian </h2> <br>
-    <a href="" class="btn bg-warning">Pesanan pending : {{count($totalPending)}}</a>
-    <a href="" class="btn bg-success">Pesanan diproses : {{count($totalAcc)}}</a><br><br>
+    <a onclick="filterData('All')" class="btn bg-primary color-white">Semua : {{count($totalCancel) + count($totalAcc) + count($totalPending)}}</a>
+    <a onclick="filterData('Pending')" class="btn bg-warning">Pending : {{count($totalPending)}}</a>
+    <a onclick="filterData('Accepted')"class="btn bg-success">Accepted : {{count($totalAcc)}}</a>
+    <a onclick="filterData('Cancelled')" class="btn bg-danger">Dibatalkan: {{count($totalCancel)}}</a><br><br>
     <table class="table table-striped" style="width:95%;">
     <thead>
         <tr>
@@ -24,7 +26,7 @@
     <tbody>
        @if(isset($transactionData))
        @foreach($transactionData as $datas)
-       <tr style=" vertical-align: middle; ">
+       <tr style=" vertical-align: middle; " class="table_data" status="{{$datas['status']}}">
             <td style="text-align:center;">{{$datas['id']}}</td>
             <td><b>[{{$datas['user_id']}}]</b> {{$datas['name']}}</td>
             <td><b>[{{$datas['produk_id'] }}]</b> {{$datas['nama']}}</td>
@@ -59,6 +61,7 @@
     var pesananID = "";
     var action = "";
     var prosesRoute = "{{route('admin.prosestransaksi')}}";
+    var table_data = document.getElementsByClassName("table_data");
 
     //membuat method untuk memproses pesanan oleh admin 
     if(prosesBtn!=null){
@@ -89,6 +92,24 @@
             });
         });
     }
+
+    var filterData = (key)=>{
+        key = key.toLowerCase();
+        console.log(key);
+        console.log(table_data.length);
+        for(var i=0;i<table_data.length ;i++){
+            if(key.includes("all")){
+                table_data[i].style.display = 'table-row'; 
+            }else{
+                var status = table_data[i].getAttribute("status").toLowerCase();
+                if(status.includes(key)){
+                    table_data[i].style.display = 'table-row'; 
+                }else{
+                    table_data[i].style.display = 'none'; 
+                }
+            }
+        }
+    };
 
 
 </script>

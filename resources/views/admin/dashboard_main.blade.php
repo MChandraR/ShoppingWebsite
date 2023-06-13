@@ -21,7 +21,7 @@
   <img src="{{asset('images/icon/troller_icon.png')}}" style="float:left;margin-right:2rem;" width="120rem">
   <div class="card-body" style="float:left;" >
   <h5 class="card-title"><b>Data Pembelian</b></h5><br>
-    <span class="card-text">Pesanan Accept : <?=$resData['totalAcc']?></span>
+    <span class="card-text">Pesanan Diterima : <?=$resData['totalAcc']?></span>
     <p class="card-text">Pesanan Pending : <?=$resData['totalPending']?></p>
   </div>
 </div>

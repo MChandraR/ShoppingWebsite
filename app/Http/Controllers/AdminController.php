@@ -18,7 +18,7 @@ class AdminController extends Controller
         $dataProduct = Product::count(); 
         $dataPesanan = pesanan::count();
         $dataPesananPending = pesanan::where('status','Pending')->count();
-        $dataPesananAcc = pesanan::where('status','Accept')->count();
+        $dataPesananAcc = pesanan::where('status','Accepted')->count();
         $dataUser = User::where('role','student')->get();
         $dataAdmin = User::where('role','admin')->get();
         $totalProductDiPesan = Product::join('pesanan','pesanan.produk_id','produk.id')->count();

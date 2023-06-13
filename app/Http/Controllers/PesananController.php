@@ -18,8 +18,9 @@ class PesananController extends Controller
         $totalPending = $transactionData->where('status',"Pending");
         //mendapatkan data total pesanan yang sudah di acc
         $totalAcc = $transactionData->where('status',"Accepted");
+        $totalCancel = $transactionData->where('status',"Cancelled");
         
-        return view('admin.transaksi',compact('transactionData',"totalPending","totalAcc"));
+        return view('admin.transaksi',compact('transactionData',"totalPending","totalAcc","totalCancel"));
         // return response()->json([
         //     "data" => $transactionData
         // ]);
@@ -30,7 +31,7 @@ class PesananController extends Controller
         if($req->action!="Accept") {
             $data = $pesananData->first();
             $pesananData->update([
-                "status" => "Canceled"
+                "status" => "Cancelled"
             ]);
         }else{
             $data = $pesananData->first();
