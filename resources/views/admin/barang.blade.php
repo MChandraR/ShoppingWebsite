@@ -26,7 +26,7 @@
     <tbody>
        @if(isset($productData))
        @foreach($productData as $datas)
-       <tr>
+       <tr style=" vertical-align: middle;">
             <td>{{$datas['id']}}</td>
             <td>{{$datas['nama']}}</td>
             <td>{{$datas['deskripsi']}}</td>

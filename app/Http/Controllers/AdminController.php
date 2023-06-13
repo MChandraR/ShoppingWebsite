@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\pesanan;
@@ -17,30 +17,39 @@ class AdminController extends Controller
     public function mainView(){
         $dataProduct = Product::count(); 
         $dataPesanan = pesanan::count();
+        $dataPesananPending = pesanan::where('status','Pending')->count();
+        $dataPesananAcc = pesanan::where('status','Accept')->count();
         $dataUser = User::where('role','student')->get();
         $dataAdmin = User::where('role','admin')->get();
+        $totalProductDiPesan = Product::join('pesanan','pesanan.produk_id','produk.id')->count();
         $resData = [
             'jumlahBarang' => $dataProduct,
             'jumlahPesanan' => $dataPesanan,
             'jumlahUser' => $dataUser->count(),
-            'jumlahAdmin' => $dataAdmin->count()
+            'jumlahAdmin' => $dataAdmin->count(),
+            'totalDipesan' => $totalProductDiPesan,
+            'totalPending' => $dataPesananPending,
+            'totalAcc' => $dataPesananAcc
         ];
         return view('admin.dashboard_main',compact('resData'));
     }
 
     public function products(){
+        //Mengambil semua data yang ada di tabel produk
         $productData = Product::all();
 
         return view('admin.barang',compact('productData'));
     }
 
     public function addProduct(Request $req){
+        //Menambahkan data baru ke dalam tabel produk
         $insert = Product::create([
             'nama' => $req->nama,
             "deskripsi" => $req->deskripsi,
             "harga" => $req->harga
         ]);
 
+        //Memvalidasi dan meyimpan gambar product yang dikirim dari client
         if(isset($req->product_image)){
             if($req->product_image != null){
                 $idProduct = Product::orderBy('id','desc')->first();
@@ -61,20 +70,18 @@ class AdminController extends Controller
     }
 
     public function deleteProduct(Request $req){
+        //query untuk menhapus data produk sesuai dengan id product
         $productTemp = Product::where('id',$req->id);
         $productTemp->delete();
 
+        //mengembalikan respon dalam bentuk json 
         return response()->json([
             "message" => "success"
         ]);
     }
 
-    public function pembelian(){
-        $transactionData = pesanan::all();
-        return view('admin.transaksi',compact('transactionData'));
-    }
-
     public function getProductData(Request $req){
+        //Mendapatkan data produk dengan id produk tertentu
         $productData = Product::where('id',$req->id)->get();
         return response()->json([
             "message" => $productData ? "success" : "gagal",
@@ -83,6 +90,7 @@ class AdminController extends Controller
     }
 
     public function updateProduct(Request $req){
+        //Mengupdate data produk pada tabel produk sesuai dengan id product tersebut
         $productTemp = Product::where('id',$req->id)->update([
             "nama" => $req->nama,
             "deskripsi" => $req->deskripsi,
@@ -90,6 +98,7 @@ class AdminController extends Controller
         ]);
         $path_temp = "";
 
+        //Memvalidasi file dan menyimpan/mengupdate foto dari product
         if(isset($req->product_image)){
             if($req->product_image != null){
                 $idProduct ="";
@@ -113,4 +122,7 @@ class AdminController extends Controller
             "res" => $path_temp
         ]);
     }
+
+    
+
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\RiwayatPesananController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PesananController;
 
 
 /*
@@ -48,7 +49,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('admin/products-detail', [AdminController::class, 'getProductData'])->name('admin.getproductdata');
     Route::post('admin/products-d', [AdminController::class, 'deleteProduct'])->name('admin.deleteproduct');
     Route::post('admin/products-u', [AdminController::class, 'updateProduct'])->name('admin.updateproduct');
-    Route::get('admin/transaksi', [AdminController::class, 'pembelian'])->name('admin.transaksi');
+    Route::get('admin/transaksi', [PesananController::class, 'pembelian'])->name('admin.transaksi');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.db');
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('admin/dashmain', [AdminController::class, 'mainView'])->name('admin.mainView');

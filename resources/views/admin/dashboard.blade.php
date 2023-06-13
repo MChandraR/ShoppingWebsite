@@ -11,8 +11,11 @@
 </head>
 <body id="body-pd">
     <div>
-    <header class="header" id="header">
-        <div class="header_toggle"><img id="header-toggle" src="{{asset('images/list-black.png')}}" width="20px" height="20px"> </div>
+    <header class="header" id="header" style=" vertical-align: middle;">
+        <div class="header_toggle">
+            <img id="header-toggle" src="{{asset('images/list-black.png')}}" width="20px" height="20px"> 
+        </div>
+        <marquee direction="right"><b>Selamat Datang di Menu Admin</b></marquee>
         <div class="header_img"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">

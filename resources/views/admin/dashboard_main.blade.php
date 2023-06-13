@@ -13,7 +13,7 @@
   <div class="card-body"  style="float:left;" >
     <h5 class="card-title"><b>Data Barang</b></h5><br>
     <span class="card-text">Total Barang : <?=$resData['jumlahBarang']?></span>
-    <p class="card-text">Total Transaksi : </p>
+    <p class="card-text">Barang Dipesan : <?=$resData['totalDipesan']?> </p>
     <!-- <a href="#" class="btn btn-primary">Menu Barang</a> -->
   </div>
 </div>
@@ -21,8 +21,8 @@
   <img src="{{asset('images/icon/troller_icon.png')}}" style="float:left;margin-right:2rem;" width="120rem">
   <div class="card-body" style="float:left;" >
   <h5 class="card-title"><b>Data Pembelian</b></h5><br>
-    <span class="card-text">Jumlah pembelian : <?=$resData['jumlahPesanan']?></span>
-    <p class="card-text">Jumlah pembelian : <?=$resData['jumlahPesanan']?></p>
+    <span class="card-text">Pesanan Accept : <?=$resData['totalAcc']?></span>
+    <p class="card-text">Pesanan Pending : <?=$resData['totalPending']?></p>
   </div>
 </div>
 <div class="dashboard-card bg-warning" style="width: 22rem; height:10rem;">
