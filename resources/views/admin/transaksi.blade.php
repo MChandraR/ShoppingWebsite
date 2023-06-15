@@ -8,10 +8,10 @@
 <body>
 <div class="main">
     <h2>Admin Pembelian </h2> <br>
-    <a onclick="filterData('All')" class="btn bg-primary color-white">Semua : {{count($totalCancel) + count($totalAcc) + count($totalPending)}}</a>
-    <a onclick="filterData('Pending')" class="btn bg-warning">Pending : {{count($totalPending)}}</a>
-    <a onclick="filterData('Accepted')"class="btn bg-success">Accepted : {{count($totalAcc)}}</a>
-    <a onclick="filterData('Cancelled')" class="btn bg-danger">Dibatalkan: {{count($totalCancel)}}</a><br><br>
+    <a onclick="filterData('All')" class="btn bg-primary color-white" style="margin-bottom:1rem;">Semua : {{count($totalCancel) + count($totalAcc) + count($totalPending)}}</a>
+    <a onclick="filterData('Pending')" class="btn bg-warning" style="margin-bottom:1rem;">Pending : {{count($totalPending)}}</a>
+    <a onclick="filterData('Accepted')"class="btn bg-success" style="margin-bottom:1rem;">Accepted : {{count($totalAcc)}}</a>
+    <a onclick="filterData('Cancelled')" class="btn bg-danger" style="margin-bottom:1rem;">Dibatalkan: {{count($totalCancel)}}</a><br><br>
     <table class="table table-striped" style="width:95%;">
     <thead>
         <tr>

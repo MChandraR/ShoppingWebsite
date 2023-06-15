@@ -105,6 +105,12 @@
                                     }.body-pd{
                                         padding-left: calc(var(--nav-width) + 188px)
                                     }
+                                    .margin-left-20{
+                                        transition: 1s;
+                                        margin-left: 7%;
+                                        padding-right: 5%;
+                                    }
+
                                 }
 
 body{
@@ -118,14 +124,14 @@ body{
 
 .main-logo{
     transition: .5s;
-    width: 22px;
-    height: 22px;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .main-logo.show{
     transition: .5s;
-    width: 40px;
-    height: 40px;
+    width: 2rem;
+    height: 2rem;
 }
 
 .dashboard-card{
@@ -136,6 +142,7 @@ body{
     padding: 1rem;
     width: 23rem; height:10rem;
 }
+
 .dashboard-card:hover{
     align-items: center;
     transition: .5s;
@@ -185,4 +192,32 @@ body{
     width: 85%;
     height: 100%;
     background-color: aliceblue;
+}
+
+@media screen and (max-width: 768px){
+    .margin-left-20{
+        height: 85vh;
+        margin-top: 3rem;
+        transition: 1s;
+        margin-left: 3%;
+        padding-right: 5%;
+        overflow: scroll;
+    }
+    .height-100{
+        margin-top: 15%;
+    }
+    .l-navbar{
+        height: 100%;
+    }
+    .main-logo{
+        transition: .5s;
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .main-logo.show{
+        transition: .5s;
+        width: 1.3rem;
+        height: 1.3rem;
+    }
 }
