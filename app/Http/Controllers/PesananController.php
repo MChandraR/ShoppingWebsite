@@ -35,10 +35,11 @@ class PesananController extends Controller
             $pesananData->update([
                 "status" => "Cancelled"
             ]);
+            
         }else{
             $data = $pesananData->first();
             $pesananData->update([
-                "status" => ($data->status == "Pending" ? "Accepted" : "Pending" )
+                "status" => $req->action
             ]);
 
             RiwayatPesanan::create([
@@ -48,9 +49,9 @@ class PesananController extends Controller
             ]);
 
         }
-        
-        
-        return back();
+        return response()->json([
+            "message" => "success"
+        ]);
     }
 
     public function order(Request $req){

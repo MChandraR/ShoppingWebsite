@@ -27,7 +27,11 @@
         <div class="cart">
           <a href="{{ route('cart.index') }}" class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
+            <span class="cart-count">
+              @if(isset($cartCount))
+              {{$cartCount}}
+              @endif
+            </span>
           </a>
         </div>        
       </div>
@@ -114,6 +118,8 @@
       harga = hrg;
       console.log(nama);
       nama_barang.textContent = nama;
+      total_harga.textContent = jumlah_barang.value * harga;
+      beli_field.textContent = jumlah_barang.value;
     };
 
     jumlah_barang.addEventListener('change',()=>{
@@ -143,7 +149,14 @@
                 }
                 
             }).done(function( result ) {
-               console.log(result.message);
+               if(result.message == "success"){
+                  alert("Berhasil ditambahkan ke keranjang");
+                  // Mengupdate jumlah item di ikon keranjang
+                  const cartCount = document.querySelector('.cart-count');
+                  cartCount.textContent = parseInt(cartCount.textContent) + 1;
+               }else{
+                  alert("Error : Tidak dapat menambahkan pesanan ! ");
+               }
                $("#close_form").click();
             });
     });
@@ -157,12 +170,7 @@
       
       const productId = this.dataset.productId;
 
-      // Simulasi penambahan produk ke keranjang
-      console.log('Menambahkan produk dengan ID:', productId);
 
-      // Mengupdate jumlah item di ikon keranjang
-      const cartCount = document.querySelector('.cart-count');
-      cartCount.textContent = parseInt(cartCount.textContent) + 1;
     }
 
     function handleKeyDown(event) {

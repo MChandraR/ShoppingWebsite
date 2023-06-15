@@ -98,7 +98,7 @@
       <form action="{{route('admin.updateproduct')}}" id="updateBarang-Form" method="post" enctype="multipart/form-data">
         @csrf
             <center>
-            <img id="update-img" style="margin:2rem;" src="{{asset('images/product/22.png')}}" width=250rem">
+            <img id="update-img" style="margin:2rem;" src="" width=250rem">
             </center>
             <input name="id" id="update-id" hidden></input>
             <div class="mb-3">
