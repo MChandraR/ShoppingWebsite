@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/riwayat-pesanan', [RiwayatPesananController::class, 'index'])->name('riwayat.pesanan');
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
     Route::get('/akun/edit', [AkunController::class, 'edit'])->name('akun.edit');
+    Route::post('/order', [PesananController::class, 'order'])->name('transaksi.order');
+    Route::post('/addcart', [PesananController::class, 'addToCart'])->name('transaksi.addcart');
+    
 });
 
 Route::middleware(['auth:admin'])->group(function () {

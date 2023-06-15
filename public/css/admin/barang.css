@@ -3,7 +3,6 @@ body{
     margin: 0;
 }
 
-
 .add-barang.show{
     transition: .1s;
     display: contents;

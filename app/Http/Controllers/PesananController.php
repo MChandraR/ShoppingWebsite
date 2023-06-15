@@ -7,7 +7,9 @@ use App\Models\Product;
 use App\Models\pesanan;
 use App\Models\RiwayatPesanan;
 use App\Models\User;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
@@ -49,5 +51,41 @@ class PesananController extends Controller
         
         
         return back();
+    }
+
+    public function order(Request $req){
+        $dataUser = Auth::user();
+
+        $pesanan = pesanan::create([
+            "user_id" =>  $dataUser['id'],
+            "produk_id" => $req->produk_id,
+            "jumlah" => $req-> jumlah,
+            "status" => "Pending"
+        ]);
+
+        if($pesanan){
+            return response()->json([
+                "message" => "berhasil"
+            ]);
+        }else{
+            return response()->json([
+                "message" => "gagal"
+            ]);
+        }
+        
+        return null;
+    }
+
+    public function addToCart(Request $req){
+        $userData = Auth::user();
+        $cart = Cart::create([
+            "user_id" => $userData['id'],
+            'product_id' => $req->product_id,
+            "quantity" => $req->quantity
+        ]);
+
+        return response()->json([
+            "message" => $cart ? "success" : "failed"
+        ]);
     }
 }
