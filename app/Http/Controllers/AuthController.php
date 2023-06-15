@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller
 {
@@ -24,8 +24,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $userData = User::where('email',$request->email)->first();
-            Auth::guard('admin')->attempt($credentials);
+            $userData = User::where('id',Auth::user()->id)->first();
+            if( Auth::user()->role == "admin"){
+                Auth::guard('admin')->attempt($credentials);
+            }
             // Jika autentikasi berhasil, redirect ke halaman beranda atau halaman tujuan lainnya
             return redirect()->route( $userData->role == "admin" ?'admin.db':'home') ;
         } 

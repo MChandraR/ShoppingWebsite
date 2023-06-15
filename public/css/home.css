@@ -12,7 +12,21 @@ li {
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
+
     color: #333;
+}
+
+.logout{
+    position: absolute;
+    top: 20px;
+    right:20px;
+}
+
+.header{
+    background-color: orange;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .search-bar {

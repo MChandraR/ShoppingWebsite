@@ -46,7 +46,8 @@ class AdminController extends Controller
         $insert = Product::create([
             'nama' => $req->nama,
             "deskripsi" => $req->deskripsi,
-            "harga" => $req->harga
+            "harga" => $req->harga,
+            "stock" => $req->stock
         ]);
 
         //Memvalidasi dan meyimpan gambar product yang dikirim dari client
@@ -65,7 +66,8 @@ class AdminController extends Controller
         }
 
         return response()->json([
-            "message" => $insert ? "success" : "gagal"
+            "message" => $insert ? "success" : "gagal",
+            "req" => $req->stock
         ]);
     }
 
@@ -99,7 +101,8 @@ class AdminController extends Controller
         $productTemp = Product::where('id',$req->id)->update([
             "nama" => $req->nama,
             "deskripsi" => $req->deskripsi,
-            "harga" => $req->harga
+            "harga" => $req->harga,
+            "stock" => $req->stock
         ]);
         $path_temp = "";
 

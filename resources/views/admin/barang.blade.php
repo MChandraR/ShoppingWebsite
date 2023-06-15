@@ -19,6 +19,7 @@
         <th scope="col">Nama</th>
         <th scope="col">Deskripsi</th>
         <th scope="col">Harga</th>
+        <th scope="col">Stok</th>
         <th scope="col">Action</th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
             <td>{{$datas['nama']}}</td>
             <td>{{$datas['deskripsi']}}</td>
             <td>{{$datas['harga']}}</td>
+            <td>{{$datas['stock']}}</td>
             <td style="width:15rem;">
                 <form action="{{route('admin.deleteproduct')}}" method="post">
                     @csrf
@@ -71,6 +73,10 @@
                 <input type="number" name="harga" id="harga_inp" class="form-control" required>
             </div>
             <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Stock Produk</label>
+                <input type="number" name="stock" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Foto Produk</label>
                 <input type="file" name="product_image" id="img_inp" class="form-control" required>
             </div>
@@ -103,15 +109,19 @@
             <input name="id" id="update-id" hidden></input>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Nama Produk</label>
-                <input id="update-nama" type="text" name="nama" id="nama_inp" class="form-control" required>
+                <input id="update-nama" type="text" name="nama" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Deskripsi Produk</label>
-                <input id="update-desc" type="text" name="deskripsi" id="desc_inp" class="form-control" required>
+                <input id="update-desc" type="text" name="deskripsi"  class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Harga Produk</label>
-                <input id="update-harga" type="number" name="harga" id="harga_inp" class="form-control" required>
+                <input id="update-harga" type="number" name="harga" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Stock Produk</label>
+                <input id="update-stock" type="number" name="stock" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Foto Produk</label>
@@ -146,6 +156,7 @@ var update_id = document.getElementById("update-id");
 var update_name = document.getElementById("update-nama");
 var update_desc = document.getElementById("update-desc");
 var update_harga = document.getElementById("update-harga");
+var update_stock = document.getElementById("update-stock");
 
 var setIdProduct = (id)=>{
     image_area.src = "{{asset('images/product')}}"+"/" + id + ".png?t=" + new Date().getTime();
@@ -169,6 +180,7 @@ var setIdProduct = (id)=>{
             update_name.value = result.data[0].nama;
             update_desc.value = result.data[0].deskripsi;
             update_harga.value = result.data[0].harga;
+            update_stock.value = result.data[0].stock;
         }
     });
 };
@@ -218,6 +230,7 @@ $('#addBarang-Form').submit( function(e) {
         if(barang_route != null || barang_route != ""){
             loadForm(barang_route);
         }
+        console.log(result.req);
     });
 
     add_modal.classlist.toggle("show");

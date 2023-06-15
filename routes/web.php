@@ -31,23 +31,22 @@ Route::get('admin/login', [AuthController::class, 'showAdminLoginForm'])->name('
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-Route::post('/getcart', [CartController::class, 'getCart'])->name('cart.getcart');
-Route::post('/cart/{id}', [CartController::class, 'delete'])->name('cart.delete');
-Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/riwayat-pesanan', [RiwayatPesananController::class, 'index'])->name('riwayat.pesanan');
     Route::get('/akun', [AkunController::class, 'index'])->name('akun');
-    Route::get('/akun/edit', [AkunController::class, 'edit'])->name('akun.edit');
+    Route::post('/akun', [AkunController::class, 'edit'])->name('akun.edit');
     Route::post('/order', [PesananController::class, 'order'])->name('transaksi.order');
     Route::post('/addcart', [PesananController::class, 'addToCart'])->name('transaksi.addcart');
-    
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/getcart', [CartController::class, 'getCart'])->name('cart.getcart');
+    Route::post('/cart/{id}', [CartController::class, 'delete'])->name('cart.delete');
+    Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
 });
 
-Route::middleware(['auth:admin'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin/products', [AdminController::class, 'products'])->name('admin.products');
     Route::post('admin/products', [AdminController::class, 'addProduct'])->name('admin.addproduct');
     Route::post('admin/products-detail', [AdminController::class, 'getProductData'])->name('admin.getproductdata');

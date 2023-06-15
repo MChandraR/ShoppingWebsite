@@ -15,7 +15,7 @@ class Product extends Model
         'nama',
         'harga',
         'deskripsi',
-        'stok'
+        'stock'
     ];
 
     // Relasi dengan Cart
