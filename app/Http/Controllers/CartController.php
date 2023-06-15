@@ -12,14 +12,14 @@ class CartController extends Controller
 {
     public function index()
     {
-        $carts = auth()->user()->carts()->select(DB::raw('carts.id,carts.user_id,carts.product_id,carts.quantity,produk.nama,produk.harga,produk.id as pid'))->
+        $carts = Cart::where('user_id',Auth::user()->id)->select(DB::raw('carts.id,carts.user_id,carts.product_id,carts.quantity,produk.nama,produk.harga,produk.id as pid'))->
         join('produk','produk.id','carts.product_id')->get();
         return view('cart.index', compact('carts'));
     }
 
     public function getCart()
     {
-        $carts = auth()->user()->carts()->select(DB::raw('carts.id,carts.user_id,carts.product_id,carts.quantity,produk.nama,produk.harga,produk.id as pid'))->
+        $carts =Cart::where('user_id',Auth::user()->id)->select(DB::raw('carts.id,carts.user_id,carts.product_id,carts.quantity,produk.nama,produk.harga,produk.id as pid'))->
         join('produk','produk.id','carts.product_id')->get();
         foreach($carts as $cart){
             Cart::where('id',$cart->id)->delete();
