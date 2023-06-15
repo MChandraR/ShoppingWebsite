@@ -37,9 +37,9 @@
                     @csrf
                     <input name="pesananID" value="{{$datas['id']}}" hidden></input>
                     @if($datas['status']=="pending" || $datas['status']=="Pending")
-                    <button pesananID="{{$datas['id']}}" act="Accept" class="btn bg-primary" id="prosesPesanan" type="submit">Accept</button>
+                    <a pesananID="{{$datas['id']}}" act="Accepted" class="btn bg-primary proses" id="prosesPesanan" >Accept</a>
                     @elseif($datas['status']=="accepted" || $datas['status']=="Accepted")
-                    <button pesananID="{{$datas['id']}}" act="Cancel" class="btn bg-danger" id="prosesPesanan" type="submit">Cancel</button>
+                    <a pesananID="{{$datas['id']}}" act="Cancelled" class="btn bg-danger proses" id="prosesPesanan" >Cancel</a>
                     @else
                     <a class="btn bg-danger-subtle" >No Action</button>
                     @endif
@@ -62,13 +62,10 @@
     var action = "";
     var prosesRoute = "{{route('admin.prosestransaksi')}}";
     var table_data = document.getElementsByClassName("table_data");
-
-    //membuat method untuk memproses pesanan oleh admin 
-    if(prosesBtn!=null){
-        prosesBtn.addEventListener('click',(e)=>{
-            e.preventDefault();
-            pesananID = prosesBtn.getAttribute("pesananID");
-            action = prosesBtn.getAttribute("act");
+    $( ".proses" ).each(function(index) {
+        $(this).on("click", function(){
+            pesananID = $(this).attr("pesananID");
+            action = $(this).attr("act");
             console.log("Memproses id Pesanan : " + pesananID);
 
             $.ajaxSetup({
@@ -85,13 +82,18 @@
                 }
                 
             }).done(function( result ) {
-                if(pembelian_route != null || loadForm != null){
+                console.log(result);
+                if(result.message=="success"){
                     console.log("sucess");
                     loadForm(pembelian_route);
                 }
+            }).fail(()=>{
+                alert("Error : Internal server error !");
+
             });
         });
-    }
+    });
+
 
     var filterData = (key)=>{
         key = key.toLowerCase();

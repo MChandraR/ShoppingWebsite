@@ -30,12 +30,11 @@ class PesananController extends Controller
 
     public function process(Request $req){
         $pesananData = pesanan::where('id',$req->pesananID);
-        if($req->action!="Accept") {
+        if($req->action!="Accepted") {
             $data = $pesananData->first();
             $pesananData->update([
                 "status" => "Cancelled"
             ]);
-            
         }else{
             $data = $pesananData->first();
             $pesananData->update([
