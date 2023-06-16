@@ -31,7 +31,7 @@
                     <a href="#" class="nav_link mynav"  id="pembelian-btn"> 
                         <img src="{{asset('images/icon/troller_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Pembelian</span> </a> 
-                    <a href="#" class="nav_link mynav"> 
+                    <a href="#" class="nav_link mynav" id="pengiriman-btn"> 
                         <img src="{{asset('images/icon/send_icon_black.png')}}" width="20px" height="20px">
                         <span class="nav_name">Kirim Pesanan</span> </a> 
                     <a href="#" class="nav_link mynav"> 
@@ -60,6 +60,7 @@
     let canvas = document.getElementById("frame_area");
     let barang_route = "{{route('admin.products')}}";
     let pembelian_route = "{{route('admin.transaksi')}}";
+    let pengiriman_route = "{{route('admin.pengiriman')}}";
 
     let loadForm = (url)=>{
         fetch( url)
@@ -79,6 +80,7 @@
     let btn_barang = document.getElementById("barang-btn");
     let btn_dashboard = document.getElementById("dashboard-btn");
     let btn_pembelian = document.getElementById("pembelian-btn");
+    let btn_pengiriman = document.getElementById("pengiriman-btn");
 
     btn_barang.addEventListener('click',()=>{
         loadForm(barang_route);
@@ -91,6 +93,9 @@
     btn_pembelian.addEventListener('click',()=>{
         loadForm(pembelian_route);
     });
-
+    
+    btn_pengiriman.addEventListener('click',()=>{
+        loadForm(pengiriman_route);
+    });
 
 </script>
