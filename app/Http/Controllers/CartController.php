@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\pesanan;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -39,18 +40,32 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
+        $product = Product::where('id',$request->product_id);
+        $sisa = $product->first()->stock - $request->quantity;
+        if( $sisa < 0){
+            return redirect()->back()->with('success', 'Stock produk kurang !');
+        }
         $cart = new Cart();
         $cart->user_id = auth()->user()->id;
         $cart->product_id = $request->product_id;
         $cart->quantity = $request->quantity;
         $cart->save();
 
+        $product->update([
+            "stock" => $sisa
+        ]);
+
         return redirect()->back()->with('success', 'Product added to cart successfully.');
     }
 
     public function delete($id)
     {
-        Cart::where('id',$id)->delete();
+        $cart = Cart::where('id',$id);
+        $product = Product::where('id',$cart->first()->product_id);
+        $product->update([
+            "stock" => $product->first()->stock + $cart->first()->quantity
+        ]);
+        $cart->delete();
 
         return redirect()->back()->with('success', 'Barang dihapus dari keranjang.');
     }

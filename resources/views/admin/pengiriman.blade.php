@@ -39,7 +39,7 @@
                     @if($datas['status']=="Accepted" || $datas['status']=="accepted")
                     <a style="width:7rem;" pesananID="{{$datas['id']}}" act="Dikirim" class="btn bg-primary proses" id="prosesPesanan" >Kirim</a>
                     @elseif($datas['status']=="Dikirim" || $datas['status']=="dikirim")
-                    <a style="width:7rem;" pesananID="{{$datas['id']}}" act="Delivered" class="btn bg-success proses" id="prosesPesanan" >Sampai</a>
+                    <a style="width:7rem;" pesananID="{{$datas['id']}}" act="Delivered" class="btn bg-success proses" id="prosesPesanan" >Selesai</a>
                     @else
                     <a style="width:7rem;" class="btn bg-danger-subtle" >No Action</button>
                     @endif

@@ -155,7 +155,7 @@
                   const cartCount = document.querySelector('.cart-count');
                   cartCount.textContent = parseInt(cartCount.textContent) + 1;
                }else{
-                  alert("Error : Tidak dapat menambahkan pesanan ! ");
+                  alert(result.message + "!");
                }
                $("#close_form").click();
             });

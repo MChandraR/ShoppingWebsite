@@ -78,10 +78,22 @@ class PesananController extends Controller
 
     public function addToCart(Request $req){
         $userData = Auth::user();
+        $product = Product::where('id', $req->product_id);
+        $sisa = $product->first()->stock - $req->quantity ;
+        if($sisa < 0){
+            return response()->json([
+                "status" => "gagal",
+                "message" => "stock kurang"
+            ]);
+        }
+
         $cart = Cart::create([
             "user_id" => $userData['id'],
             'product_id' => $req->product_id,
             "quantity" => $req->quantity
+        ]);
+        $product->update([
+            "stock" => $sisa
         ]);
 
         return response()->json([
