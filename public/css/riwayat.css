@@ -1,0 +1,11 @@
+.header{
+    color: white;
+    stroke: black 2px;
+    text-align: center;
+    background: orange;
+    padding: 1rem;
+}
+
+.riwayat-table{
+    width: 95%;
+}

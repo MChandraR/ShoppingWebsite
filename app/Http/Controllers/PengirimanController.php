@@ -32,11 +32,13 @@ class PengirimanController extends Controller
             "status" => $req->action
         ]);
 
-        RiwayatPesanan::create([
-            "user_id" => $data->user_id,
-            "tanggal_pesanan" => date('Y-m-d H:m:s'),
-            "pesanan" => $data->produk_id
-        ]);
+        if($req->action=="Cancelled" || $req->action== "Delivered"){
+            RiwayatPesanan::create([
+                "user_id" => $data->user_id,
+                "tanggal_pesanan" => date('Y-m-d H:m:s'),
+                "pesanan" => $req->pesananID
+            ]);
+        }
 
         
         return response()->json([

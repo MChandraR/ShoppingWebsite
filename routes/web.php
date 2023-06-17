@@ -60,6 +60,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.db');
     Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('admin/dashmain', [AdminController::class, 'mainView'])->name('admin.mainView');
+    Route::get('admin/riwayat',[RiwayatPesananController::class, 'indexadmin'])->name('admin.riwayat');
 });
 
 Route::get('admin/login', function () {

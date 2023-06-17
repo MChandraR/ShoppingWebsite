@@ -15,7 +15,13 @@ class PesananController extends Controller
 {
     public function pembelian(){
         //mendapatkan data transaksi / pesanan yang digabung dengan data users dan data produk
-        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,jumlah,status,users.name,produk.nama'))->join('users','users.id','pesanan.user_id')->join('produk','produk.id','pesanan.produk_id')->get();
+        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,jumlah,status,users.name,produk.nama'))
+        ->where(function ($query) {
+            $query->where('status', '=', 'Pending')
+                  ->orWhere('status', '=', 'Accepted');
+        })
+        ->join('users','users.id','pesanan.user_id')
+        ->join('produk','produk.id','pesanan.produk_id')->get();
         //mendapatkan data total pesanan yang masih pending
         $totalPending = $transactionData->where('status',"Pending");
         //mendapatkan data total pesanan yang sudah di acc
@@ -35,19 +41,19 @@ class PesananController extends Controller
             $pesananData->update([
                 "status" => "Cancelled"
             ]);
+            
+            RiwayatPesanan::create([
+                "user_id" => $data->user_id,
+                "tanggal_pesanan" => date('Y-m-d H:m:s'),
+                "pesanan" => $req->pesananID
+            ]);
         }else{
             $data = $pesananData->first();
             $pesananData->update([
                 "status" => $req->action
             ]);
-
-            RiwayatPesanan::create([
-                "user_id" => $data->user_id,
-                "tanggal_pesanan" => date('Y-m-d H:m:s'),
-                "pesanan" => $data->produk_id
-            ]);
-
         }
+
         return response()->json([
             "message" => "success"
         ]);

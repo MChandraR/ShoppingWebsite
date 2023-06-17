@@ -7,44 +7,31 @@
 </head>
 <body>
 <div class="main">
-    <h2>Admin Pembelian </h2> <br>
-    <a onclick="filterData('All')" class="btn bg-primary color-white" style="margin-bottom:1rem;">Semua : {{count($totalCancel) + count($totalAcc) + count($totalPending)}}</a>
-    <a onclick="filterData('Pending')" class="btn bg-warning" style="margin-bottom:1rem;">Pending : {{count($totalPending)}}</a>
-    <a onclick="filterData('Accepted')"class="btn bg-success" style="margin-bottom:1rem;">Accepted : {{count($totalAcc)}}</a>
+    <h2>Riwayat Pembelian </h2> <br>
+    <a onclick="filterData('Selesai')" class="btn bg-primary color-white" style="margin-bottom:1rem;">Selesai : {{$totalSelesai }}</a>
+    <a onclick="filterData('Delivered')" class="btn bg-success" style="margin-bottom:1rem;">Delivered : {{$totalSampai}}</a>
+    <a onclick="filterData('Cancelled')"class="btn bg-danger" style="margin-bottom:1rem;">Cancelled : {{$totalCancel}}</a>
     <table class="table table-striped" style="width:95%;">
     <thead>
         <tr>
         <th scope="col" style="text-align:center;">ID</th>
-        <th scope="col">User_Id</th>
-        <th scope="col">Produk_ID</th>
+        <th scope="col">User</th>
+        <th scope="col">Produk</th>
         <th scope="col" style="text-align:center;">Jumlah</th>
         <th scope="col">Status</th>
-        <th scope="col">Action</th>
+        <th scope="col">Tgl-Pesan</th>
         </tr>
     </thead>
     <tbody>
-       @if(isset($transactionData))
-       @foreach($transactionData as $datas)
+       @if(isset($dataRiwayat))
+       @foreach($dataRiwayat as $datas)
        <tr style=" vertical-align: middle; " class="table_data" status="{{$datas['status']}}">
             <td style="text-align:center;">{{$datas['id']}}</td>
             <td><b>[{{$datas['user_id']}}]</b> {{$datas['name']}}</td>
-            <td><b>[{{$datas['produk_id'] }}]</b> {{$datas['nama']}}</td>
+            <td>{{$datas['nama']}}</td>
             <td style="text-align:center;">{{$datas['jumlah']}}</td>
             <td>{{$datas['status']}}</td>
-            <td style="width:8rem; height:2rem;">
-                <form action="{{route('admin.prosestransaksi')}}" method="post">
-                    @csrf
-                    <input name="pesananID" value="{{$datas['id']}}" hidden></input>
-                    @if($datas['status']=="pending" || $datas['status']=="Pending")
-                    <a pesananID="{{$datas['id']}}" act="Accepted" class="btn bg-primary proses" id="prosesPesanan" >Accept</a>
-                    @elseif($datas['status']=="accepted" || $datas['status']=="Accepted")
-                    <a pesananID="{{$datas['id']}}" act="Cancelled" class="btn bg-danger proses" id="prosesPesanan" >Cancel</a>
-                    @else
-                    <a class="btn bg-danger-subtle" >No Action</button>
-                    @endif
-                </form>
-                
-            </td>
+            <td>{{$datas['tanggal_pesanan']}}</td>
        </tr>
        @endforeach
        @endif

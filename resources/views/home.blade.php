@@ -57,7 +57,7 @@
         <h3>{{$product['nama']}}</h3>
         <p>{{$product['deskripsi']}}</p>
         <span class="price">Rp.{{$product['harga']}}</span>
-        <a nama_produk= "{{$product['nama']}}" onclick="setHarga({{$product['harga']}},'<?=$product['nama']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
+        <a nama_produk= "{{$product['nama']}}" onclick="setHarga({{$product['harga']}},'<?=$product['nama']?>','<?=$product['id']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
       </div>
       @endforeach
     </div>
@@ -113,13 +113,15 @@
     let jumlah_barang = document.getElementById("jumlah_barang");
     let nama_barang = document.getElementById("nama_barang");
     let btn_pesan = document.getElementById("beli_barang");
+    let productID = 0;
 
-    let setHarga = (hrg,nama)=>{
+    let setHarga = (hrg,nama,id)=>{
       harga = hrg;
       console.log(nama);
       nama_barang.textContent = nama;
       total_harga.textContent = jumlah_barang.value * harga;
       beli_field.textContent = jumlah_barang.value;
+      productID = id;
     };
 
     jumlah_barang.addEventListener('change',()=>{
@@ -134,7 +136,6 @@
           return;
       }
       console.log("beli");
-      var productID = btn_pesan.getAttribute("product_id");
       $.ajaxSetup({
                 headers : {
                     'X-CSRF-TOKEN' : $('input[name="_token"]').attr('value')
