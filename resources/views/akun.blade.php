@@ -27,9 +27,17 @@
           <input name = "name" type="text" class="form-control" id="exampleInputEmail1" value="{{ $user->name }}" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <label for="exampleInputEmail1" class="form-label">Alamat Email</label>
           <input name= "email" type="email" class="form-control" id="exampleInputEmail1" value="{{ $user->email }}" aria-describedby="emailHelp">
         </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Alamat</label>
+          <input name="address" type="text" class="form-control" id="exampleInputEmail1" value="{{ $user->address }}" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Foto Profile</label>
+          <input id="update-file" type="file" name="profile_image" class="form-control">
+      </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
       </form>
       </div>

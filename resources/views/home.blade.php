@@ -57,7 +57,7 @@
         <h3>{{$product['nama']}}</h3>
         <p>{{$product['deskripsi']}}</p>
         <span class="price">Rp.{{$product['harga']}}</span>
-        <a nama_produk= "{{$product['nama']}}" onclick="setHarga({{$product['harga']}},'<?=$product['nama']?>','<?=$product['id']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
+        <a nama_produk= "{{$product['nama']}}" onclick="setHarga({{$product['harga']}},'<?=$product['nama']?>','<?=$product['deskripsi']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
       </div>
       @endforeach
     </div>
@@ -71,57 +71,92 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-flex">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambahkan ke keranjang</h1>
         <button id="close_form" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form action="{{route('transaksi.addcart')}}" method="post">
-        @csrf
-        <div style="float:left;">
-          <input name="product_id" value="24" hidden></input>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label" value=0>Jumlah</label>
-            <input name="quantity" id="jumlah_barang" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <form action="{{route('transaksi.addcart')}}" method="post">
+          @csrf
+          <div class="row">
+            <div class="col-md-6">
+              <input name="product_id" value="24" hidden></input>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" value=0>Jumlah</label>
+                <input name="quantity" id="jumlah_barang" type="number" class="form-control"
+                  id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div style="margin-top: 10%;">
+              <div class="button-container">
+                <button type="button" product_id="{{$product['id']}}" id="beli_barang" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+            </div>
           </div>
-          <button type="button" product_id= "{{$product['id']}}" id="beli_barang" class="btn btn-primary">Submit</button>
-        </div>
-        <div style="float:left; margin-left:20px; vertical-align:middle;">
-          <span ><b>Detail pesanan : </b></span><br>
-          <span >Barang : </span>
-          <span id="nama_barang"></span><br>
-          <span >Harga : Rp.</span>
-          <span id="total_harga">0</span><br>
-          <span >Jumlah Beli : </span>
-          <span id="beli_field">0</span>
-        </div>
-      </form>
+          <div style="margin-top: 3%;">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" id="tab-pesanan" data-bs-toggle="tab" href="#detail-pesanan">Detail
+                  Pesanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="tab-produk" data-bs-toggle="tab" href="#spesifikasi">Spesifikasi</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="detail-pesanan">
+                <span><b>Detail pesanan : </b></span><br>
+                <span>Barang : </span>
+                <span id="nama_barang"></span><br>
+                <span>Harga : Rp.</span>
+                <span id="total_harga">0</span><br>
+                <span>Jumlah Beli : </span>
+                <span id="beli_field">0</span>
+              </div>
+              <div class="tab-pane fade" id="spesifikasi">
+                <span><b>Spesifikasi:</b></span><br>
+                <span>Ram/Rom:</span>
+                <span id="detail_desc"></span><br>
+                <span>Chipset:</span>
+                <span id="detail_chipset"></span><br>
+                <span>Kamera:</span>
+                <span id="detail_kamera"></span><br>
+                <span>Baterai:</span>
+                <span id="detail_Baterai"></span><br>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 
   <script>
     // Mendapatkan semua tombol "Tambahkan ke keranjang" ...
     const addToCartButtons = document.querySelectorAll('.btn[data-product-id]');
     let harga = 0;
     let total_harga = document.getElementById("total_harga");
+    let field_desc = document.getElementById("detail_desc");
     let beli_field = document.getElementById("beli_field");
     let jumlah_barang = document.getElementById("jumlah_barang");
     let nama_barang = document.getElementById("nama_barang");
     let btn_pesan = document.getElementById("beli_barang");
-    let productID = 0;
 
-    let setHarga = (hrg,nama,id)=>{
+    let setHarga = (hrg,nama,desc)=>{
       harga = hrg;
       console.log(nama);
       nama_barang.textContent = nama;
       total_harga.textContent = jumlah_barang.value * harga;
       beli_field.textContent = jumlah_barang.value;
-      productID = id;
+      field_desc.textContent = desc;
     };
 
     jumlah_barang.addEventListener('change',()=>{
@@ -136,6 +171,7 @@
           return;
       }
       console.log("beli");
+      var productID = btn_pesan.getAttribute("product_id");
       $.ajaxSetup({
                 headers : {
                     'X-CSRF-TOKEN' : $('input[name="_token"]').attr('value')
