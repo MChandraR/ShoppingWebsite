@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Spesifikasi;
 use App\Models\pesanan;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +37,8 @@ class AdminController extends Controller
 
     public function products(){
         //Mengambil semua data yang ada di tabel produk
-        $productData = Product::all();
+        $productData = Product::select(DB::raw('produk.id,nama,deskripsi,harga,stock,ram_rom,chipset,kamera,baterai'))->
+        leftjoin('spesifikasi','spesifikasi.produk_id','produk.id')->get();
 
         return view('admin.barang',compact('productData'));
     }
@@ -50,10 +52,20 @@ class AdminController extends Controller
             "stock" => $req->stock
         ]);
 
+        $idProduct = Product::orderBy('id','desc')->first();
+
+        Spesifikasi::create([
+            'produk_id' => $idProduct->id,
+            'ram_rom' => $req->ram_rom,
+            'chipset' => $req->chipset,
+            'kamera' => $req->kamera,
+            'baterai' => $req->baterai
+        ]);
+
         //Memvalidasi dan meyimpan gambar product yang dikirim dari client
         if(isset($req->product_image)){
             if($req->product_image != null){
-                $idProduct = Product::orderBy('id','desc')->first();
+
                 $file = $req->product_image;
                 $file_name = $file->getClientOriginalName();
                 $path = "images/product";
@@ -89,7 +101,9 @@ class AdminController extends Controller
 
     public function getProductData(Request $req){
         //Mendapatkan data produk dengan id produk tertentu
-        $productData = Product::where('id',$req->id)->get();
+        $productData = Product::select(DB::raw('produk.id,nama,deskripsi,harga,stock,ram_rom,chipset,kamera,baterai'))->
+        leftjoin('spesifikasi','spesifikasi.produk_id','produk.id')->where('produk.id',$req->id)->get();
+        
         return response()->json([
             "message" => $productData ? "success" : "gagal",
             "data" => $productData
@@ -104,6 +118,27 @@ class AdminController extends Controller
             "harga" => $req->harga,
             "stock" => $req->stock
         ]);
+
+        $isExsist = Spesifikasi::where('produk_id',$req->id)->count();
+        if($isExsist > 0){
+            Spesifikasi::where('produk_id',$req->id)->update([
+                'produk_id' => $req->id,
+                'ram_rom' => $req->ram_rom,
+                'chipset' => $req->chipset,
+                'kamera' => $req->kamera,
+                'baterai' => $req->baterai
+            ]);
+        }else{
+            Spesifikasi::create([
+                'produk_id' => $req->id,
+                'ram_rom' => $req->ram_rom,
+                'chipset' => $req->chipset,
+                'kamera' => $req->kamera,
+                'baterai' => $req->baterai
+            ]);
+        }
+      
+
         $path_temp = "";
 
         //Memvalidasi file dan menyimpan/mengupdate foto dari product

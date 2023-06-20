@@ -77,6 +77,22 @@
                 <input type="number" name="stock" id="stock_inp" class="form-control" required>
             </div>
             <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Ram/Rom</label>
+                <input type="text" name="ram_rom" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Chipset</label>
+                <input type="text" name="chipset" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Kamera</label>
+                <input type="text" name="kamera" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Kapasitas Baterai</label>
+                <input type="text" name="baterai" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Foto Produk</label>
                 <input type="file" name="product_image" id="img_inp" class="form-control" required>
             </div>
@@ -124,6 +140,22 @@
                 <input id="update-stock" type="number" name="stock" class="form-control" required>
             </div>
             <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Ram/Rom</label>
+                <input id="update-ramrom" type="text" name="ram_rom" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Chipset</label>
+                <input id="update-chipset" type="text" name="chipset" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Kamera</label>
+                <input id="update-kamera" type="text" name="kamera" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Kapasitas Baterai</label>
+                <input id="update-baterai" type="text" name="baterai" id="stock_inp" class="form-control" required>
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Foto Produk</label>
                 <input id="update-file" type="file" name="product_image" id="img_inp" class="form-control" >
             </div>
@@ -157,6 +189,10 @@ var update_name = document.getElementById("update-nama");
 var update_desc = document.getElementById("update-desc");
 var update_harga = document.getElementById("update-harga");
 var update_stock = document.getElementById("update-stock");
+var update_ramrom = document.getElementById("update-ramrom");
+var update_chipset = document.getElementById("update-chipset");
+var update_kamera = document.getElementById("update-kamera");
+var update_baterai = document.getElementById("update-baterai");
 
 var setIdProduct = (id)=>{
     image_area.src = "{{asset('images/product')}}"+"/" + id + ".png?t=" + new Date().getTime();
@@ -181,6 +217,10 @@ var setIdProduct = (id)=>{
             update_desc.value = result.data[0].deskripsi;
             update_harga.value = result.data[0].harga;
             update_stock.value = result.data[0].stock;
+            update_ramrom.value = result.data[0].ram_rom;
+            update_chipset.value = result.data[0].chipset;
+            update_kamera.value = result.data[0].kamera;
+            update_baterai.value = result.data[0].baterai;
         }
     });
 };

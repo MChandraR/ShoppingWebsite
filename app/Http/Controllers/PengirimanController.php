@@ -15,7 +15,7 @@ class PengirimanController extends Controller
         $totalDikirim = pesanan::where('status','Dikirim')->get();
         $totalSampai = pesanan::where('status','Delivered')->get();
 
-        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,pesanan.jumlah,pesanan.status,users.name,produk.nama'))->
+        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,pesanan.jumlah,pesanan.status,users.name,users.alamat,produk.nama'))->
         where(function ($query) {
             $query->where('status', '=', 'Accepted')
                   ->orWhere('status', '=', 'Dikirim')

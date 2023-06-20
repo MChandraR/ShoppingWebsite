@@ -18,6 +18,7 @@
         <th scope="col">User_Id</th>
         <th scope="col">Produk_ID</th>
         <th scope="col" style="text-align:center;">Jumlah</th>
+        <th scope="col">Alamat</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
         <th scope="col">Batalkan</th>
@@ -31,6 +32,7 @@
             <td><b>[{{$datas['user_id']}}]</b> {{$datas['name']}}</td>
             <td><b>[{{$datas['produk_id'] }}]</b> {{$datas['nama']}}</td>
             <td style="text-align:center;">{{$datas['jumlah']}}</td>
+            <td >{{$datas['alamat']}}</td>
             <td>{{$datas['status'] == 'Accepted' ? 'Menunggu Dikirim' : $datas['status'] }}</td>
             <td style="width:8rem; height:2rem;">
                 <form action="{{route('admin.prosestransaksi')}}" method="post">
