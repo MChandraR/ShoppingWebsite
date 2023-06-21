@@ -16,6 +16,9 @@ class AdminController extends Controller
     }
 
     public function mainView(){
+        $dataPesananDikirim = pesanan::where('status','Dikirim')->count();
+        $dataPesananMenunggu = pesanan::where('status','Accepted')->count();
+        $dataPesananTelahDikirim = pesanan::where('status','Delivered')->count();
         $dataProduct = Product::count(); 
         $dataPesanan = pesanan::count();
         $dataPesananPending = pesanan::where('status','Pending')->count();
@@ -30,7 +33,10 @@ class AdminController extends Controller
             'jumlahAdmin' => $dataAdmin->count(),
             'totalDipesan' => $totalProductDiPesan,
             'totalPending' => $dataPesananPending,
-            'totalAcc' => $dataPesananAcc
+            'totalAcc' => $dataPesananAcc,
+            'totalDikirim' => $dataPesananDikirim,
+            'totalMenunggu' => $dataPesananMenunggu,
+            'totalTerkirim' => $dataPesananTelahDikirim
         ];
         return view('admin.dashboard_main',compact('resData'));
     }

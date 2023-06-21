@@ -18,9 +18,11 @@
 
     <div class="container">
       <!-- Tampilkan data pengguna lainnya sesuai kebutuhan -->
-  
+      <center>
+      <img src="{{asset('images/users/')}}/<?=$user->id?>.png" width="20%" >
+</center><br><br>
       <h2>Informasi Profil</h2><br>
-      <form action="{{route('akun.edit')}}" method="post">
+      <form action="{{route('akun.edit')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Nama</label>
@@ -32,7 +34,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Alamat</label>
-          <input name="address" type="text" class="form-control" id="exampleInputEmail1" value="{{ $user->address }}" aria-describedby="emailHelp">
+          <input name="alamat" type="text" class="form-control" id="exampleInputEmail1" value="{{ $user->alamat }}" aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Foto Profile</label>

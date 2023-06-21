@@ -23,6 +23,8 @@ class AkunController extends Controller
             "email" => $req->email
         ]);
 
+   
+
         return back()->with('success', 'Akun berhasil diupdate !');;
     }
 }

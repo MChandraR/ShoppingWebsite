@@ -20,9 +20,23 @@ class AkunController extends Controller
     public function edit(Request $req){
         User::where('id',Auth::user()->id)->update([
             "name" => $req->name,
-            "email" => $req->email
+            "email" => $req->email,
+            "alamat" => $req->alamat
         ]);
+
+        if(isset($req->profile_image)){
+            if($req->profile_image != null){
+                $file = $req->profile_image;
+                $path = "images/users/";
+                if(isset(Auth::user()->id)){
+                    $idProduct = Auth::user()->id;
+                }
+                // Storage::putFileAs($path,$file,$idProduct->id.".png");
+                $file->move($path,$idProduct.".png");
+            }
+        }
 
         return back()->with('success', 'Akun berhasil diupdate !');;
     }
 }
+ 

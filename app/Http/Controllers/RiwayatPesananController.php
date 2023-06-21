@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\RiwayatPesanan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class RiwayatPesananController extends Controller
@@ -16,7 +17,12 @@ class RiwayatPesananController extends Controller
         $riwayatPesanan = RiwayatPesanan::join('pesanan','pesanan.id','riwayat_pesanan.pesanan')
         ->join('produk','produk.id','pesanan.produk_id')->get();
 
-        return view('riwayatpesanan', compact('riwayatPesanan'));
+        $pesanans = Pesanan::where('user_id',Auth::user()->id)->where(function ($query) {
+            $query->where('status', '=', 'Pending')
+            ->orWhere('status', '=', 'Accepted');
+        })->join('produk','produk.id','pesanan.produk_id')->get();
+
+        return view('riwayatpesanan', compact('riwayatPesanan','pesanans'));
     }
     
     public function indexadmin(){

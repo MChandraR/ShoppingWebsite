@@ -37,8 +37,9 @@
   <img src="{{asset('images/icon/send_icon.png')}}" style="float:left;margin-right:2rem;" width="120rem">
   <div class="card-body" style="float:left;" >
     <h5 class="card-title"><b>Data Pengiriman</b></h5><br>
-    <span class="card-text">Jumlah User  : <?=$resData['jumlahUser']?></span>
-    <p class="card-text">Jumlah Admin : <?=$resData['jumlahAdmin']?></p>
+    <span class="card-text">Menunggu Dikirim  : <?=$resData['totalMenunggu']?></span><br>
+    <span class="card-text">Pesanan Dikirim  : <?=$resData['totalDikirim']?></span>
+    <p class="card-text">Pesanan Sampai  : <?=$resData['totalTerkirim']?></p>
   </div>
 </div>
 </body>
