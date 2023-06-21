@@ -57,7 +57,7 @@
         <h3>{{$product['nama']}}</h3>
         <p>{{$product['deskripsi']}}</p>
         <span class="price">Rp.{{$product['harga']}}</span>
-        <a nama_produk="{{$product['nama']}}"  onclick="setHarga({{$product['harga']}},'<?=$product['nama']?>','<?=$product['stock']?>','<?=$product['ram_rom']?>','<?=$product['kamera']?>','<?=$product['chipset']?>','<?=$product['baterai']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
+        <a nama_produk="{{$product['nama']}}"  onclick="setHarga({{$product['id']}},{{$product['harga']}},'<?=$product['nama']?>','<?=$product['stock']?>','<?=$product['ram_rom']?>','<?=$product['kamera']?>','<?=$product['chipset']?>','<?=$product['baterai']?>')" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#" class="btn" data-product-id="3">Tambahkan ke keranjang</a>
       </div>
       @endforeach
     </div>
@@ -155,8 +155,10 @@
   let field_kamera = document.getElementById("detail_kamera");
   let field_chipset = document.getElementById("detail_chipset");
   let field_baterai = document.getElementById("detail_baterai");
+  var productID = 0;
   
-    let setHarga = (hrg, nama, stock, ram_rom, kamera, chipset, baterai) => {
+    let setHarga = (id,hrg, nama, stock, ram_rom, kamera, chipset, baterai) => {
+    productID = id;
     harga = hrg;
     console.log(nama);
     nama_barang.textContent = nama;
@@ -181,7 +183,6 @@
           return;
       }
       console.log("beli");
-      var productID = btn_pesan.getAttribute("product_id");
       $.ajaxSetup({
                 headers : {
                     'X-CSRF-TOKEN' : $('input[name="_token"]').attr('value')
