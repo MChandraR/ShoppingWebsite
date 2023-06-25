@@ -15,7 +15,7 @@ class PesananController extends Controller
 {
     public function pembelian(){
         //mendapatkan data transaksi / pesanan yang digabung dengan data users dan data produk
-        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,jumlah,status,users.name,produk.nama'))
+        $transactionData = pesanan::select(DB::raw('pesanan.id,pesanan.user_id,pesanan.produk_id,jumlah,status,users.name,users.alamat,users.telepon,produk.nama'))
         ->where(function ($query) {
             $query->where('status', '=', 'Pending')
                   ->orWhere('status', '=', 'Accepted');

@@ -69,4 +69,12 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Barang dihapus dari keranjang.');
     }
+
+    public function userCancel(){
+        $proses = pesanan::where('user_id',Auth::user()->id)->update([
+            "status" => "Cancelled"
+        ]);
+
+        return back();
+    }
 }

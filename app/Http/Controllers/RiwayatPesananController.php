@@ -15,11 +15,12 @@ class RiwayatPesananController extends Controller
     {
         // Mendapatkan riwayat pesanan dari database
         $riwayatPesanan = RiwayatPesanan::join('pesanan','pesanan.id','riwayat_pesanan.pesanan')
-        ->join('produk','produk.id','pesanan.produk_id')->get();
+        ->join('produk','produk.id','pesanan.produk_id')->where('riwayat_pesanan.user_id',Auth::user()->id)->get();
 
         $pesanans = Pesanan::where('user_id',Auth::user()->id)->where(function ($query) {
             $query->where('status', '=', 'Pending')
-            ->orWhere('status', '=', 'Accepted');
+            ->orWhere('status', '=', 'Accepted')
+            ->orWhere('status', '=', 'Dikirim');
         })->join('produk','produk.id','pesanan.produk_id')->get();
 
         return view('riwayatpesanan', compact('riwayatPesanan','pesanans'));

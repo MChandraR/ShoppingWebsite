@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/{id}', [CartController::class, 'delete'])->name('cart.delete');
     Route::post('cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('/order/cancel', [CartController::class, 'userCancel'])->name('pesanan.cancel');
 });
 
 Route::middleware(['auth','admin'])->group(function () {
